@@ -1,12 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using ReservaHotel.Api.Models;
 
 namespace ReservaHotel.Api.Controllers
 {
-    public class ClientController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class ClientController : ControllerBase
     {
-        public IActionResult Index()
+        private static List<Client> _clients = new List<Client>();
+
+        [HttpPost]
+        public IActionResult AddClient([FromBody]Client client)
         {
-            return View();
+            _clients.Add(client);
+            return CreatedAtAction(nameof(GetClientById),
+                new { id = client.clientId}, client);
+        }
+
+        [HttpGet]
+        public IEnumerable<Client> GetClient()
+        {
+            return _clients;
+        }
+
+        [HttpGet("{id}")]
+        
+        public IActionResult GetClientById(int id)
+        {
+            var client = _clients.FirstOrDefault(client => client.clientId == id);
+            if (client == null) return NotFound();
+            return Ok(client);
         }
     }
 }

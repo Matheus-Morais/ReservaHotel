@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ReservaHotel.Api.Models;
 
 namespace ReservaHotel.Api.Controllers
 {
-    public class ReservationController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class ReservationController : ControllerBase
     {
-        public IActionResult Index()
+        [HttpPost]
+        public IActionResult MakeReservation([FromBody] 
+            Room room,
+            Reservation reservation)
         {
-            return View();
+            if (room.IsAvailable == true)
+            {
+
+            }
         }
     }
 }

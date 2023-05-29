@@ -7,6 +7,8 @@ namespace ReservaHotel.Api.Controllers
     [Route("[controller]")]
     public class ReservationController : ControllerBase
     {
+        private static List<Reservation> _reservations = new List<Reservation>();
+
         [HttpPost]
         public IActionResult MakeReservation([FromBody] 
             Room room,
@@ -15,7 +17,11 @@ namespace ReservaHotel.Api.Controllers
             if (room.IsAvailable == true)
             {
 
+                _reservations.Add(reservation);
+                return Ok(reservation);
             }
+            return BadRequest();
         }
     }
 }
+

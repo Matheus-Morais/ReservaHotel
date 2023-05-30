@@ -16,12 +16,21 @@ namespace ReservaHotel.Api.Controllers
         {
             if (room.IsAvailable == true)
             {
-
                 _reservations.Add(reservation);
                 return Ok(reservation);
             }
             return BadRequest();
         }
+
+        [HttpGet]
+        public IActionResult GetReservationById([FromQuery] int reservationId) 
+        {
+            var reservation = _reservations.FirstOrDefault(reservation => reservation.reservationId == reservationId);
+
+            if (reservation == null) return NotFound();
+            return Ok(reservation);
+        }
+
     }
 }
 

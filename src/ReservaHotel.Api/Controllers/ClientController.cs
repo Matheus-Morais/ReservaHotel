@@ -26,7 +26,7 @@ namespace ReservaHotel.Api.Controllers
 
         [HttpGet("{id}")]
         
-        public IActionResult GetClientById(int id)
+        public IActionResult GetClientById([FromBody] int id)
         {
             var client = _clients.FirstOrDefault(client => client.clientId == id);
             if (client == null) return NotFound();

@@ -5,10 +5,10 @@ using ReservaHotel.Api.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<HotelContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("C:/Projetos/CSharp/Hotel/API_Hotel/DBHotel.db")));
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<HotelContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("C:/Projetos/CSharp/Hotel/API_Hotel/DBHotel.db")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

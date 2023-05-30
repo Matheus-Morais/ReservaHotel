@@ -8,7 +8,7 @@ namespace ReservaHotel.Api.Controllers
     [Route("[controller]")]
     public class ClientController : ControllerBase
     {
-        private static List<Client> _clients = new List<Client>();
+        public static List<Client> _clients = new List<Client>();
 
         [HttpPost]
         public IActionResult AddClient([FromBody]Client client)

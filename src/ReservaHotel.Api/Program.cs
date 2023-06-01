@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<HotelContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("C:/Projetos/CSharp/Hotel/API_Hotel/DBHotel.db")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("C:/Projetos/CSharp/ReservaHotel/src/ReservaHotel.Api/Data/Db.Hotel.db")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

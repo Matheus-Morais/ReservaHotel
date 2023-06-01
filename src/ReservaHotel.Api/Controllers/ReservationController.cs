@@ -9,18 +9,20 @@ namespace ReservaHotel.Api.Controllers
     public class ReservationController : ControllerBase
     {
         private static List<Reservation> _reservations = new List<Reservation>();
+        private Room _room = new Room { RoomId = 1, IsAvailable = true, NumberRoom = 201 };
 
         [HttpPost]
-        public IActionResult MakeReservation([FromBody] 
-            Room room,
-            Reservation reservation)
+        public IActionResult CreateReservation([FromBody] Reservation reservation)
         {
-            if (room.IsAvailable == true)
+            if(reservation == null) return BadRequest();
+
+            if (_room.IsAvailable)
             {
                 _reservations.Add(reservation);
+                _room.IsAvailable = false;
                 return Ok(reservation);
             }
-            return BadRequest();
+            else return BadRequest();
         }
 
         [HttpGet]

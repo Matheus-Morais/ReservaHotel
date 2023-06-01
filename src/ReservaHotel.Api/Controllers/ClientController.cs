@@ -5,7 +5,7 @@ using ReservaHotel.Api.Models;
 namespace ReservaHotel.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     public class ClientController : ControllerBase
     {
         public static List<Client> _clients = new List<Client>();

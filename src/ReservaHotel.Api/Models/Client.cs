@@ -4,6 +4,7 @@ namespace ReservaHotel.Api.Models;
 
 public class Client
 {
+    [Key]
     public int clientId { get; set; }
     [Required]
     public required string Name { get; set; }

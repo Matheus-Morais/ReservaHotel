@@ -5,7 +5,7 @@ using ReservaHotel.Api.Controllers;
 namespace ReservaHotel.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     public class ReservationController : ControllerBase
     {
         private static List<Reservation> _reservations = new List<Reservation>();
@@ -25,7 +25,7 @@ namespace ReservaHotel.Api.Controllers
             else return BadRequest();
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult GetReservationById([FromQuery] int reservationId) 
         {
             var reservation = _reservations.FirstOrDefault(reservation => reservation.reservationId == reservationId);
@@ -34,7 +34,7 @@ namespace ReservaHotel.Api.Controllers
             return Ok(reservation);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
 
         public IActionResult DeleteReservation([FromQuery] int reservationId) 
         {

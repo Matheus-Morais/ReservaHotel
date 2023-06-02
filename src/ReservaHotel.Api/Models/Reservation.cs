@@ -7,9 +7,9 @@ public class Reservation
     [Key]
     public int reservationId { get; set; }
     [Required]
-    public string data_init { get; set; }
+    public DateTime data_init { get; set; }
     [Required]
-    public string data_finish { get; set; }
+    public DateTime data_finish { get; set; }
     [Required]
     [Range(1, 4)]
     public int numberAdults { get; set; }

@@ -13,6 +13,7 @@ namespace ReservaHotel.Api.Controllers
         [HttpPost]
         public IActionResult AddClient([FromBody]Client client)
         {
+            client.clientId += 1;
             _clients.Add(client);
             return CreatedAtAction(nameof(GetClientById),
                 new { id = client.clientId}, client);
@@ -26,7 +27,7 @@ namespace ReservaHotel.Api.Controllers
 
         [HttpGet("{id}")]
         
-        public IActionResult GetClientById([FromBody] int id)
+        public IActionResult GetClientById([FromQuery] int id)
         {
             var client = _clients.FirstOrDefault(client => client.clientId == id);
             if (client == null) return NotFound();

@@ -18,6 +18,7 @@ namespace ReservaHotel.Api.Controllers
 
             if (_room.IsAvailable)
             {
+                reservation.reservationId += 1;
                 _reservations.Add(reservation);
                 _room.IsAvailable = false;
                 return Ok(reservation);
@@ -25,7 +26,7 @@ namespace ReservaHotel.Api.Controllers
             else return BadRequest();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public IActionResult GetReservationById([FromQuery] int reservationId) 
         {
             var reservation = _reservations.FirstOrDefault(reservation => reservation.reservationId == reservationId);
@@ -45,9 +46,21 @@ namespace ReservaHotel.Api.Controllers
             return Ok(reservation.reservationId);// Falta adiconar clientId
         }
 
-        //[HttpPut]
+        [HttpGet("availability")]
 
-        //public IActionResult UpdateReservation() { }
+        public IActionResult GetAvailability([FromBody] string data_init, string data_finish)
+        { 
+            if (data_init == null || data_finish == null) return BadRequest();
+
+            
+        }
+
+        //[HttpPut("{reservationid}/{clientid}")]
+
+        //public IActionResult UpdateReservation([FromQuery] int reservationId, int clientId)
+        //{
+
+        //}
     }
 }
 

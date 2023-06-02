@@ -19,7 +19,7 @@ namespace ReservaHotel.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Client> GetClient()
+        public IEnumerable<Client> GetAllClients()
         {
             return _clients;
         }
@@ -32,5 +32,6 @@ namespace ReservaHotel.Api.Controllers
             if (client == null) return NotFound();
             return Ok(client);
         }
+
     }
 }

@@ -16,14 +16,9 @@ namespace ReservaHotel.Api.Controllers
         {
             if(reservation == null) return BadRequest();
 
-            if (_room.IsAvailable)
-            {
-                reservation.reservationId += 1;
-                _reservations.Add(reservation);
-                _room.IsAvailable = false;
-                return Ok(reservation);
-            }
-            else return BadRequest();
+            reservation.reservationId += 1;
+            _reservations.Add(reservation);
+            return Ok(reservation);
         }
 
         [HttpGet]

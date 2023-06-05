@@ -7,6 +7,8 @@ public class Reservation
     [Key]
     public int reservationId { get; set; }
     [Required]
+    public int clientId { get; set; }
+    [Required]
     public DateTime data_init { get; set; }
     [Required]
     public DateTime data_finish { get; set; }

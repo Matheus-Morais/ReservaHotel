@@ -19,15 +19,15 @@ namespace ReservaHotel.Api.Controllers
                 new { id = client.clientId}, client);
         }
 
-        [HttpGet]
+        [HttpGet("ListAll")]
         public IEnumerable<Client> GetAllClients()
         {
             return _clients;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("ById/{id}")]
         
-        public IActionResult GetClientById([FromQuery] int id)
+        public IActionResult GetClientById(int id)
         {
             var client = _clients.FirstOrDefault(client => client.clientId == id);
             if (client == null) return NotFound();

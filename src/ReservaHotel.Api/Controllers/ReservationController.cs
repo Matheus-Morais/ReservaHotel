@@ -9,36 +9,36 @@ namespace ReservaHotel.Api.Controllers
     public class ReservationController : ControllerBase
     {
         private static List<Reservation> _reservations = new List<Reservation>();
-        private Client _client = new Client { clientId = 1, CPF = "12345678923", Name ="Luisinho"};
+        private Client _client = new Client { clientId = 1, CPF = "12345678923", Name = "Luisinho" };
         private Room _room = new Room { RoomId = 1, NumberRoom = 201 };
-        
+
 
         [HttpPost]
-        public IActionResult CreateReservation([FromBody] Reservation reservation, int clientId)
+        public IActionResult CreateReservation([FromBody] Reservation reservation)
         {
-            if (clientId != _client.clientId) return NotFound("Cliente não encontrado");
+            if (reservation.clientId != _client.clientId) return NotFound("Cliente não encontrado");
 
-            if(reservation == null) return BadRequest();
+            if (reservation == null) return BadRequest();
 
             reservation.reservationId += 1;
             _reservations.Add(reservation);
             return Ok(reservation);
         }
 
-        [HttpGet]
-        public IActionResult GetReservationById([FromQuery] int reservationId) 
+        [HttpGet("{id}")]
+        public IActionResult GetReservationById(int id) 
         {
-            var reservation = _reservations.FirstOrDefault(reservation => reservation.reservationId == reservationId);
+            var reservation = _reservations.FirstOrDefault(reservation => reservation.reservationId == id);
 
             if (reservation == null) return NotFound();
             return Ok(reservation);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
 
-        public IActionResult DeleteReservation([FromQuery] int reservationId) 
+        public IActionResult DeleteReservation(int id) 
         {
-            var reservation = _reservations.FirstOrDefault(reservation => reservation.reservationId == reservationId);
+            var reservation = _reservations.FirstOrDefault(reservation => reservation.reservationId == id);
             if (reservation == null) return NotFound();
 
             _reservations.Remove(reservation);
